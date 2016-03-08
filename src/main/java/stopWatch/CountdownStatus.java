@@ -1,19 +1,17 @@
 package stopWatch;
 
-/**
- * Created by Yan on 27.05.2015.
- */
+
 public enum CountdownStatus {
-    RUN("run"), STOP("stop"), PAUSE("pause");
+	RUN("run"), STOP("stop"), PAUSE("pause");
 
-    private String statusName;
+	private final String statusName;
 
-    CountdownStatus(String statusName) {
-        this.statusName = statusName;
-    }
+	CountdownStatus(String statusName) {
+		this.statusName = statusName;
+	}
 
-    @Override
-    public String toString() {
-        return statusName;
-    }
+	@Override
+	public String toString() {
+		return statusName;
+	}
 }

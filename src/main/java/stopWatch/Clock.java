@@ -4,13 +4,10 @@ import java.util.Calendar;
 
 
 public class Clock implements Runnable {
+	private final Display display;
 
-	Display display;
-	
 	public Clock(DisplayImpl display) {
-		
 		this.display = display;
-		
 	}
 
 	@Override
@@ -24,12 +21,10 @@ public class Clock implements Runnable {
 			}
 		}
 	}
-	
+
 	private long today(){
-		
-		Calendar date = Calendar.getInstance();
+		final Calendar date = Calendar.getInstance();
 		date.roll(Calendar.HOUR_OF_DAY, 3);
-		long n = date.getTimeInMillis();
-		return n = n%(24*3600000);
+		return date.getTimeInMillis()%(24*3600000);
 	}
 }
