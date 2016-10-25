@@ -1,6 +1,8 @@
 package stopWatch;
 
-import static stopWatch.StopWatch.CountdownStatus.*;
+import static stopWatch.StopWatch.CountdownStatus.PAUSE;
+import static stopWatch.StopWatch.CountdownStatus.RUN;
+import static stopWatch.StopWatch.CountdownStatus.STOP;
 
 
 public class StopWatch {
