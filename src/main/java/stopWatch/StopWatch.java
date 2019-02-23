@@ -1,53 +1,41 @@
 package stopWatch;
 
-import static stopWatch.StopWatch.CountdownStatus.PAUSE;
-import static stopWatch.StopWatch.CountdownStatus.RUN;
-import static stopWatch.StopWatch.CountdownStatus.STOP;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 
+import static stopWatch.CountdownStatus.*;
 
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class StopWatch {
-	private CountdownStatus status = STOP;
-	private long time;
-	private long init;
+    CountdownStatus status = STOP;
+    long time;
+    long init;
 
-	enum CountdownStatus {
-		RUN("run"), STOP("stop"), PAUSE("pause");
+    public void run() {
+        switch (status) {
+            case STOP:
+                time = 0;
+            case PAUSE:
+                init = System.currentTimeMillis() - time;
+        }
+        status = RUN;
+    }
 
-		private final String statusName;
+    public void pause() {
+        if (status == RUN) time = System.currentTimeMillis() - init;
+        status = PAUSE;
+    }
 
-		CountdownStatus(String statusName) {
-			this.statusName = statusName;
-		}
+    public void stop() {
+        time = status == STOP ? 0 : System.currentTimeMillis() - init;
+        status = STOP;
+    }
 
-		@Override
-		public String toString() {
-			return statusName;
-		}
-	}
+    public long getTime() {
+        return time = System.currentTimeMillis() - init;
+    }
 
-	public void run() {
-		switch(status) {
-			case STOP: time = 0;
-			case PAUSE: init = System.currentTimeMillis() - time;
-		}
-		status = RUN;
-	}
-
-	public void pause() {
-		if (status == RUN) time = System.currentTimeMillis() - init;
-		status = PAUSE;
-	}
-
-	public void stop() {
-		time = status == STOP ? 0 : System.currentTimeMillis() - init;
-		status = STOP;
-	}
-
-	public long getTime() {
-		return time = System.currentTimeMillis() - init;
-	}
-
-	public CountdownStatus getStatus() {
-		return status;
-	}
+    public CountdownStatus getStatus() {
+        return status;
+    }
 }
